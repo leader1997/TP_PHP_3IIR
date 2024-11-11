@@ -30,35 +30,38 @@
 </form>
 
 <?php
-  if (isset($_POST['calculer'])) {
-    
-      $nombre1 = (float)$_POST['nombre1'];
-      $nombre2 = (float)$_POST['nombre2'];
-      $operation = $_POST['operation'];
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['calculer'])) {
+      $nombre1 = filter_input(INPUT_POST, 'nombre1', FILTER_VALIDATE_FLOAT);
+      $nombre2 = filter_input(INPUT_POST, 'nombre2', FILTER_VALIDATE_FLOAT);
+      $operation = filter_input(INPUT_POST, 'operation', FILTER_SANITIZE_STRING);
       $resultat = "";
 
-      switch ($operation) {
-          case 'addition':
-              $resultat = $nombre1 + $nombre2;
-              break;
-          case 'soustraction':
-              $resultat = $nombre1 - $nombre2;
-              break;
-          case 'multiplication':
-              $resultat = $nombre1 * $nombre2;
-              break;
-          case 'division':
-              if ($nombre2 != 0) {
-                  $resultat = $nombre1 / $nombre2;
-              } else {
-                  $resultat = "Erreur : Division par zéro !";
-              }
-              break;
-          default:
-              $resultat = "Opération invalide";
+      if ($nombre1 === false || $nombre2 === false) {
+          $resultat = "Erreur : Veuillez entrer des nombres valides.";
+      } else {
+          switch ($operation) {
+              case 'addition':
+                  $resultat = $nombre1 + $nombre2;
+                  break;
+              case 'soustraction':
+                  $resultat = $nombre1 - $nombre2;
+                  break;
+              case 'multiplication':
+                  $resultat = $nombre1 * $nombre2;
+                  break;
+              case 'division':
+                  if ($nombre2 != 0) {
+                      $resultat = $nombre1 / $nombre2;
+                  } else {
+                      $resultat = "Erreur : Division par zéro !";
+                  }
+                  break;
+              default:
+                  $resultat = "Opération invalide";
+          }
       }
 
-      echo "<p>Résultat : $resultat</p>";
+      echo "<p>Résultat : " . htmlspecialchars($resultat) . "</p>";
   }
 ?>
 
