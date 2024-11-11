@@ -13,3 +13,5 @@
 
 5. Lancez le serveur Apache.
 6. Explorez les solutions des exercices.
+7. Exemple :
+![image](https://github.com/user-attachments/assets/bbf6496a-89a1-4282-9346-35b2a33558a2)
