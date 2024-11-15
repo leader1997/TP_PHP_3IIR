@@ -8,10 +8,10 @@
     
 <h2>Calculatrice Simple</h2>
 
-<form method="post" action="">
+<form method="post" action="exo2.php">
     
   <label for="nombre1">Nombre 1 :</label>
-  <input type="number" id="nombre1" name="nombre1" required><br><br>
+  <input type="number" id="nombre1" name="nombre1" required ><br><br>
 
   
   <label for="nombre2">Nombre 2 :</label>
@@ -30,33 +30,16 @@
 </form>
 
 <?php
+
+  include "calcul.php";
+
   if (isset($_POST['calculer'])) {
     
-      $nombre1 = (float)$_POST['nombre1'];
+      $nombre1 = (float)$_POST['nombre1'];// "15.5" => 15.5
       $nombre2 = (float)$_POST['nombre2'];
       $operation = $_POST['operation'];
-      $resultat = "";
+      $resultat = calculatrice($nombre1,$nombre2,$operation);
 
-      switch ($operation) {
-          case 'addition':
-              $resultat = $nombre1 + $nombre2;
-              break;
-          case 'soustraction':
-              $resultat = $nombre1 - $nombre2;
-              break;
-          case 'multiplication':
-              $resultat = $nombre1 * $nombre2;
-              break;
-          case 'division':
-              if ($nombre2 != 0) {
-                  $resultat = $nombre1 / $nombre2;
-              } else {
-                  $resultat = "Erreur : Division par zéro !";
-              }
-              break;
-          default:
-              $resultat = "Opération invalide";
-      }
 
       echo "<p>Résultat : $resultat</p>";
   }

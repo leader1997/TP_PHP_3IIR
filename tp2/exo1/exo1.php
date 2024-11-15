@@ -12,7 +12,7 @@
     
     <hr>
 
-    <form action="form.php" method="post">
+    <form action="exo1.php" method="post">
         <label for="search">Search : </label>
         <input type="text" name="search">
         <br><br>

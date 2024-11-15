@@ -9,7 +9,7 @@
 <body>
 
 <h2>Ajouter un étudiant</h2>
-<form action="create.php" method="post">
+<form action="inserer.php" method="post">
     <input type="text" name="nom" placeholder="Nom" required>
     <input type="email" name="email" placeholder="Email" required>
     <input type="number" name="age" placeholder="Âge" required>
@@ -36,8 +36,8 @@
         echo "<td>{$row['email']}</td>";
         echo "<td>{$row['age']}</td>";
         echo "<td>
-                <a href='update.php?id={$row['id']}'>Modifier</a> |
-                <a href='delete.php?id={$row['id']}'>Supprimer</a>
+                <a href='modifier.php?id={$row['id']}'>Modifier</a> |
+                <a href='supprimer.php?id={$row['id']}'>Supprimer</a>
               </td>";
         echo "</tr>";
     }
